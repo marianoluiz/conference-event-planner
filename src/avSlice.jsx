@@ -27,6 +27,7 @@ export const avSlice = createSlice({
         cost: 80,
         quantity: 0,
     },
+
     {
         img: "https://pixabay.com/images/download/signpost-235079_640.jpg",
         name: "Signage",
