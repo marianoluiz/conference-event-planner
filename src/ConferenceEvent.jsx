@@ -82,6 +82,7 @@ const getItemsFromTotalCost = () => {
 
     const items = getItemsFromTotalCost();
 
+    /* total modal */
     const ItemsDisplay = ({ items }) => {
         console.log(items);
         return <>
@@ -117,6 +118,7 @@ const getItemsFromTotalCost = () => {
             </div>
         </>
     };
+
     const calculateTotalCost = (section) => {
         let totalCost = 0;
         if (section === "venue") {
@@ -153,7 +155,9 @@ const mealsTotalCost = calculateTotalCost("meals");
     };
 
     return (
+      /* ui starts here */
         <>
+        {/* navbar */}
             <navbar className="navbar_event_conference">
                 <div className="company_logo">Conference Expense Planner</div>
                 <div className="left_navbar">
@@ -167,17 +171,23 @@ const mealsTotalCost = calculateTotalCost("meals");
                     </button>
                 </div>
             </navbar>
+
+            {/* main container */}
             <div className="main_container">
                 {!showItems
                     ?
                     (
-                        <div className="items-information">
-                             <div id="venue" className="venue_container container_main">
+                      /* normal */
+                      <div className="items-information">
+                            <div id="venue" className="venue_container container_main">
         <div className="text">
  
           <h1>Venue Room Selection</h1>
         </div>
+
+        {/* venue container */}
         <div className="venue_selection">
+
           {venueItems.map((item, index) => (
             <div className="venue_main" key={index}>
               <div className="img">
@@ -185,6 +195,7 @@ const mealsTotalCost = calculateTotalCost("meals");
               </div>
               <div className="text">{item.name}</div>
               <div>${item.cost}</div>
+
      <div className="button_container">
         {venueItems[index].name === "Auditorium Hall (Capacity:200)" ? (
 
@@ -196,16 +207,20 @@ const mealsTotalCost = calculateTotalCost("meals");
             &#8211;
           </button>
           <span className="selected_count">
+            {/* prevent lower than 0 */}
             {venueItems[index].quantity > 0 ? ` ${venueItems[index].quantity}` : "0"}
           </span>
           <button
+          
             className={remainingAuditoriumQuantity === 0? "btn-success btn-disabled" : "btn-success btn-plus"}
             onClick={() => handleAddToCart(index)}
           >
             &#43;
           </button>
         </>
-        ) : (
+        ) : /* if not auditorium element*/
+        
+        (
           <div className="button_container">
            <button
               className={venueItems[index].quantity ===0 ? " btn-warning btn-disabled" : "btn-warning btn-plus"}
@@ -231,6 +246,8 @@ const mealsTotalCost = calculateTotalCost("meals");
           ))}
         </div>
         <div className="total_cost">Total Cost: ${venueTotalCost}</div>
+
+        {/* venue container end */}
       </div>
 
                             {/*Necessary Add-ons*/}
@@ -260,6 +277,7 @@ const mealsTotalCost = calculateTotalCost("meals");
                                 </div>
 <div className="total_cost">Total Cost: {avTotalCost}</div>
                             </div>
+                            {/*Necessary Add-ons end*/}
 
                             {/* Meal Section */}
 
@@ -296,8 +314,10 @@ const mealsTotalCost = calculateTotalCost("meals");
 <div className="total_cost">Total Cost: {mealsTotalCost}</div>
 
                             </div>
+                            {/* Meal Section */}
                         </div>
                     ) : (
+                      /* total modal */
                         <div className="total_amount_detail">
     <TotalCost totalCosts={ totalCosts } ItemsDisplay={() => <ItemsDisplay items={ items } />} />
 </div>
@@ -308,6 +328,7 @@ const mealsTotalCost = calculateTotalCost("meals");
 
 
             </div>
+            {/* main container end */}
         </>
 
     );
